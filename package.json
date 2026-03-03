@@ -1,0 +1,24 @@
+{
+  "name": "openclaw-git-analyzer",
+  "version": "1.0.0",
+  "description": "Git repository analysis tool for OpenClaw",
+  "main": "git-analyzer-skill/main.py",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "openclaw",
+    "git",
+    "analyzer",
+    "contribution"
+  ],
+  "author": "Wing",
+  "license": "MIT",
+  "dependencies": {
+    "GitPython": "^3.1.0"
+  },
+  "openclaw": {
+    "type": "skill",
+    "path": "git-analyzer-skill"
+  }
+}

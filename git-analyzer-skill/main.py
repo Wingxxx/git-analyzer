@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Git仓库管理工具
+Git仓库分析工具 - OpenClaw Skill
 功能：
 1. 本地仓库检测
 2. Git仓库克隆
@@ -10,13 +10,30 @@ Git仓库管理工具
    - 按时间范围过滤提交
    - 分支检测和切换
    - 提取提交详细信息
+5. 贡献度计算
+6. 报告生成
+
+此脚本作为OpenClaw skill运行，提供Git仓库分析功能。
 """
+
+# OpenClaw Skill入口点
+def skill_entrypoint(args):
+    """
+    OpenClaw skill入口函数
+    :param args: 命令行参数
+    :return: 执行结果
+    """
+    import sys
+    sys.argv = ['git-analyzer'] + args.split()
+    main()
+    return "Git-Analyzer命令执行完成"
 
 import os
 import git
 from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError
 from datetime import datetime, timedelta
+import argparse
 
 def is_git_repo(path):
     """
@@ -435,3 +452,118 @@ def generate_markdown_report(local_path, output_file="git_analysis_report.md", s
     except Exception as e:
         print(f"生成报告失败: {e}")
         return False
+
+def parse_date(date_str):
+    """
+    解析日期字符串
+    :param date_str: 日期字符串，格式为YYYY-MM-DD
+    :return: datetime对象或None
+    """
+    if date_str:
+        try:
+            return datetime.strptime(date_str, '%Y-%m-%d')
+        except ValueError:
+            print(f"日期格式错误: {date_str}，应为YYYY-MM-DD")
+            return None
+    return None
+
+def main():
+    """
+    主函数
+    """
+    parser = argparse.ArgumentParser(
+        prog='git-analyzer',
+        description='Git仓库分析工具',
+        epilog='更多信息请访问: https://openclaw.dev'
+    )
+    
+    # 创建子命令解析器
+    subparsers = parser.add_subparsers(
+        dest='command',
+        help='可用命令'
+    )
+    
+    # status命令
+    status_parser = subparsers.add_parser('status', help='检查仓库状态')
+    status_parser.add_argument('path', nargs='?', default='.', help='仓库路径')
+    
+    # clone命令
+    clone_parser = subparsers.add_parser('clone', help='克隆仓库')
+    clone_parser.add_argument('url', help='仓库URL')
+    clone_parser.add_argument('path', help='本地路径')
+    
+    # update命令
+    update_parser = subparsers.add_parser('update', help='更新仓库')
+    update_parser.add_argument('path', nargs='?', default='.', help='仓库路径')
+    
+    # branches命令
+    branches_parser = subparsers.add_parser('branches', help='列出分支')
+    branches_parser.add_argument('path', nargs='?', default='.', help='仓库路径')
+    
+    # switch命令
+    switch_parser = subparsers.add_parser('switch', help='切换分支')
+    switch_parser.add_argument('branch', help='分支名称')
+    switch_parser.add_argument('path', nargs='?', default='.', help='仓库路径')
+    
+    # commits命令
+    commits_parser = subparsers.add_parser('commits', help='查看提交记录')
+    commits_parser.add_argument('path', nargs='?', default='.', help='仓库路径')
+    commits_parser.add_argument('--since', help='开始时间 (YYYY-MM-DD)')
+    commits_parser.add_argument('--until', help='结束时间 (YYYY-MM-DD)')
+    
+    # analyze命令
+    analyze_parser = subparsers.add_parser('analyze', help='分析贡献度')
+    analyze_parser.add_argument('path', nargs='?', default='.', help='仓库路径')
+    analyze_parser.add_argument('--since', help='开始时间 (YYYY-MM-DD)')
+    analyze_parser.add_argument('--until', help='结束时间 (YYYY-MM-DD)')
+    
+    # report命令
+    report_parser = subparsers.add_parser('report', help='生成分析报告')
+    report_parser.add_argument('path', nargs='?', default='.', help='仓库路径')
+    report_parser.add_argument('--output', default='git_analysis_report.md', help='输出文件路径')
+    report_parser.add_argument('--since', help='开始时间 (YYYY-MM-DD)')
+    report_parser.add_argument('--until', help='结束时间 (YYYY-MM-DD)')
+    
+    # 解析参数
+    args = parser.parse_args()
+    
+    if not args.command:
+        parser.print_help()
+        return
+    
+    # 处理路径参数
+    path = os.path.abspath(args.path)
+    
+    if args.command == 'status':
+        is_repo = is_git_repo(path)
+        print(f"{path} {'是' if is_repo else '不是'} Git仓库")
+    
+    elif args.command == 'clone':
+        clone_repo(args.url, path)
+    
+    elif args.command == 'update':
+        update_repo(path)
+    
+    elif args.command == 'branches':
+        list_branches(path)
+    
+    elif args.command == 'switch':
+        switch_branch(path, args.branch)
+    
+    elif args.command == 'commits':
+        since = parse_date(args.since)
+        until = parse_date(args.until)
+        get_commits(path, since, until)
+    
+    elif args.command == 'analyze':
+        since = parse_date(args.since)
+        until = parse_date(args.until)
+        calculate_contribution(path, since, until)
+    
+    elif args.command == 'report':
+        since = parse_date(args.since)
+        until = parse_date(args.until)
+        generate_markdown_report(path, args.output, since, until)
+
+if __name__ == '__main__':
+    main()

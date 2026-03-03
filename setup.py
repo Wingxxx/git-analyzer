@@ -1,21 +1,16 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="openclaw",
-    version="0.1.0",
-    description="OpenClaw开发工具集",
-    author="OpenClaw Team",
-    author_email="contact@openclaw.dev",
+    name="openclaw-git-analyzer",
+    version="1.0.0",
+    description="Git repository analysis tool for OpenClaw",
+    author="Wing",
+    author_email="wing@example.com",
     packages=find_packages(),
     include_package_data=True,
     install_requires=[
         "GitPython>=3.1.0"
     ],
-    entry_points={
-        "console_scripts": [
-            "openclaw=openclaw.main:main"
-        ]
-    },
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",

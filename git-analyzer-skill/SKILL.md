@@ -1,16 +1,24 @@
 ---
 name: git-analyzer
-description: Git仓库分析工具，用于管理Git仓库、分析提交记录、计算贡献度和生成分析报告。当用户需要分析Git仓库、查看提交历史、计算开发者贡献度、生成仓库分析报告、评估团队绩效、进行项目回顾、克隆仓库、切换分支、更新仓库或检查仓库状态时，务必使用此技能。
+description: Git仓库分析工具技能。用于管理Git仓库、分析提交记录、计算贡献度和生成分析报告。当用户需要分析Git仓库、查看提交历史、计算开发者贡献度、生成仓库分析报告、评估团队绩效、进行项目回顾、克隆仓库、切换分支、更新仓库或检查仓库状态时使用此技能。
 compatibility:
-  - tools: [Read, Write, RunCommand]
-  - dependencies: [GitPython]
+  tools:
+    - Read
+    - Write
+    - RunCommand
+    - Grep
+    - Glob
+    - LS
+  dependencies:
+    - Git
+    - GitPython
 ---
 
 # Git-Analyzer Skill
 
 ## 功能概述
 
-Git-Analyzer是一个强大的Git仓库分析工具，提供以下功能：
+Git-Analyzer是一个强大的Git仓库分析工具技能，提供以下功能：
 
 1. **仓库管理**
    - 检测本地路径是否为Git仓库
@@ -36,7 +44,7 @@ Git-Analyzer是一个强大的Git仓库分析工具，提供以下功能：
 
 ### 命令格式
 
-```
+```bash
 git-analyzer <command> [options]
 ```
 
@@ -47,7 +55,7 @@ git-analyzer <command> [options]
 **功能**：检测指定路径是否为Git仓库
 
 **用法**：
-```
+```bash
 git-analyzer status [path]
 ```
 
@@ -55,7 +63,7 @@ git-analyzer status [path]
 - `path`：仓库路径，默认为当前目录
 
 **示例**：
-```
+```bash
 git-analyzer status
 ```
 
@@ -64,7 +72,7 @@ git-analyzer status
 **功能**：从远程地址克隆Git仓库到本地
 
 **用法**：
-```
+```bash
 git-analyzer clone <url> <path>
 ```
 
@@ -73,7 +81,7 @@ git-analyzer clone <url> <path>
 - `path`：本地保存路径
 
 **示例**：
-```
+```bash
 git-analyzer clone https://github.com/user/repo.git ./my-repo
 ```
 
@@ -82,7 +90,7 @@ git-analyzer clone https://github.com/user/repo.git ./my-repo
 **功能**：更新本地Git仓库到最新版本
 
 **用法**：
-```
+```bash
 git-analyzer update [path]
 ```
 
@@ -90,7 +98,7 @@ git-analyzer update [path]
 - `path`：仓库路径，默认为当前目录
 
 **示例**：
-```
+```bash
 git-analyzer update ./my-repo
 ```
 
@@ -99,7 +107,7 @@ git-analyzer update ./my-repo
 **功能**：列出仓库的所有分支
 
 **用法**：
-```
+```bash
 git-analyzer branches [path]
 ```
 
@@ -107,7 +115,7 @@ git-analyzer branches [path]
 - `path`：仓库路径，默认为当前目录
 
 **示例**：
-```
+```bash
 git-analyzer branches
 ```
 
@@ -116,7 +124,7 @@ git-analyzer branches
 **功能**：切换到指定分支
 
 **用法**：
-```
+```bash
 git-analyzer switch <branch> [path]
 ```
 
@@ -125,7 +133,7 @@ git-analyzer switch <branch> [path]
 - `path`：仓库路径，默认为当前目录
 
 **示例**：
-```
+```bash
 git-analyzer switch develop
 ```
 
@@ -134,7 +142,7 @@ git-analyzer switch develop
 **功能**：获取仓库的提交记录，支持按时间范围过滤
 
 **用法**：
-```
+```bash
 git-analyzer commits [path] [--since <date>] [--until <date>]
 ```
 
@@ -144,7 +152,7 @@ git-analyzer commits [path] [--since <date>] [--until <date>]
 - `--until`：结束日期，格式为YYYY-MM-DD
 
 **示例**：
-```
+```bash
 git-analyzer commits --since 2024-01-01 --until 2024-01-31
 ```
 
@@ -153,7 +161,7 @@ git-analyzer commits --since 2024-01-01 --until 2024-01-31
 **功能**：分析仓库的贡献度情况
 
 **用法**：
-```
+```bash
 git-analyzer analyze [path] [--since <date>] [--until <date>]
 ```
 
@@ -163,7 +171,7 @@ git-analyzer analyze [path] [--since <date>] [--until <date>]
 - `--until`：结束日期，格式为YYYY-MM-DD
 
 **示例**：
-```
+```bash
 git-analyzer analyze --since 2024-01-01
 ```
 
@@ -172,7 +180,7 @@ git-analyzer analyze --since 2024-01-01
 **功能**：生成Markdown格式的仓库分析报告
 
 **用法**：
-```
+```bash
 git-analyzer report [path] [--output <file>] [--since <date>] [--until <date>]
 ```
 
@@ -183,7 +191,7 @@ git-analyzer report [path] [--output <file>] [--since <date>] [--until <date>]
 - `--until`：结束日期，格式为YYYY-MM-DD
 
 **示例**：
-```
+```bash
 git-analyzer report --output analysis.md --since 2024-01-01
 ```
 
@@ -213,7 +221,7 @@ git-analyzer report --output analysis.md --since 2024-01-01
 
 ## 注意事项
 
-1. 使用此工具前，确保已安装Git和GitPython库
+1. 使用此技能前，确保已安装Git和GitPython库
 2. 对于大型仓库，分析可能需要较长时间
 3. 报告生成默认保存为Markdown格式，可直接在GitHub等平台查看
 4. 支持的时间格式为YYYY-MM-DD
@@ -231,13 +239,14 @@ git-analyzer report --output analysis.md --since 2024-01-01
 2. **仓库路径错误**：确保提供的路径是有效的Git仓库
 3. **权限问题**：确保有足够的权限访问仓库
 4. **网络问题**：克隆仓库时确保网络连接正常
+5. **Git未安装**：确保系统已安装Git并配置到环境变量
 
 ## 输入输出示例
 
 ### 示例1：检查仓库状态
 
 **输入**：
-```
+```bash
 git-analyzer status
 ```
 
@@ -249,7 +258,7 @@ git-analyzer status
 ### 示例2：分析贡献度
 
 **输入**：
-```
+```bash
 git-analyzer analyze --since 2024-01-01
 ```
 
@@ -268,7 +277,7 @@ Bob Johnson         8           15          70          28.5        108.5
 ### 示例3：生成分析报告
 
 **输入**：
-```
+```bash
 git-analyzer report --output team_analysis.md --since 2024-01-01
 ```
 

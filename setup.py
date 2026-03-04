@@ -1,9 +1,9 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="openclaw-git-analyzer",
+    name="git-analyzer",
     version="1.0.0",
-    description="Git repository analysis tool for OpenClaw",
+    description="Git repository analysis tool for Trae IDE and other AI development environments",
     author="Wing",
     author_email="wing@example.com",
     packages=find_packages(),

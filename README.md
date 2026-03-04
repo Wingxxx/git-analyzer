@@ -1,8 +1,8 @@
-# Git-Analyzer Skill for OpenClaw
+# Git-Analyzer
 
 ## 项目简介
 
-Git-Analyzer是一个专为OpenClaw设计的Git仓库分析工具，提供全面的仓库管理、贡献度分析和报告生成功能。它可以帮助团队了解代码贡献情况，评估开发者绩效，以及进行项目回顾。
+Git-Analyzer是一个通用的Git仓库分析工具，兼容Agent IDE等AI开发环境，提供全面的仓库管理、贡献度分析和报告生成功能。它可以帮助团队了解代码贡献情况，评估开发者绩效，以及进行项目回顾。
 
 ## 功能特点
 
@@ -16,55 +16,47 @@ Git-Analyzer是一个专为OpenClaw设计的Git仓库分析工具，提供全面
 
 - Python 3.6 或更高版本
 - Git
-- OpenClaw 2026.3 或更高版本
 - GitPython 3.1.0 或更高版本
 
 ## 安装方法
 
-### 1. 安装GitPython依赖
+### 安装依赖
 
 ```bash
 pip install GitPython
 ```
 
-### 2. 安装到OpenClaw
+## 使用方法
 
-#### 方法一：使用.skill文件安装
+### 作为Agent Skill使用
+
+Git-Analyzer作为Agent skill，可以通过自然语言指令调用。Agent会自动识别用户意图并执行相应功能。
+
+**示例指令**：
+- "检查当前仓库状态"
+- "分析2024年1月以来的贡献度"
+- "生成团队分析报告"
+- "列出所有分支"
+- "克隆仓库 https://github.com/user/repo.git"
+
+### 命令行用法
+
+#### 检查仓库状态
 
 ```bash
-openclaw skill install path/to/git-analyzer.skill
+git-analyzer status
 ```
 
-#### 方法二：直接安装目录
+#### 分析贡献度
 
 ```bash
-openclaw skill install .
+git-analyzer analyze --since 2024-01-01
 ```
 
-### 3. 验证安装
+#### 生成分析报告
 
 ```bash
-openclaw skill list
-```
-
-## 使用示例
-
-### 检查仓库状态
-
-```bash
-openclaw git-analyzer status
-```
-
-### 分析贡献度
-
-```bash
-openclaw git-analyzer analyze --since 2024-01-01
-```
-
-### 生成分析报告
-
-```bash
-openclaw git-analyzer report --output analysis.md --since 2024-01-01
+git-analyzer report --output analysis.md --since 2024-01-01
 ```
 
 ## 贡献度计算方法
@@ -95,14 +87,14 @@ openclaw git-analyzer report --output analysis.md --since 2024-01-01
 
 | 命令 | 描述 | 示例 |
 |------|------|------|
-| `status` | 检查仓库状态 | `openclaw git-analyzer status` |
-| `clone` | 克隆仓库 | `openclaw git-analyzer clone <url> <path>` |
-| `update` | 更新仓库 | `openclaw git-analyzer update` |
-| `branches` | 列出分支 | `openclaw git-analyzer branches` |
-| `switch` | 切换分支 | `openclaw git-analyzer switch <branch>` |
-| `commits` | 查看提交记录 | `openclaw git-analyzer commits --since 2024-01-01` |
-| `analyze` | 分析贡献度 | `openclaw git-analyzer analyze --since 2024-01-01` |
-| `report` | 生成分析报告 | `openclaw git-analyzer report --output report.md` |
+| `status` | 检查仓库状态 | `git-analyzer status` |
+| `clone` | 克隆仓库 | `git-analyzer clone <url> <path>` |
+| `update` | 更新仓库 | `git-analyzer update` |
+| `branches` | 列出分支 | `git-analyzer branches` |
+| `switch` | 切换分支 | `git-analyzer switch <branch>` |
+| `commits` | 查看提交记录 | `git-analyzer commits --since 2024-01-01` |
+| `analyze` | 分析贡献度 | `git-analyzer analyze --since 2024-01-01` |
+| `report` | 生成分析报告 | `git-analyzer report --output report.md` |
 
 ## 常见问题
 
@@ -130,10 +122,9 @@ pip install GitPython
 
 ## 支持和反馈
 
-如果您在使用git-analyzer skill时遇到任何问题，请联系：
+如果您在使用Git-Analyzer时遇到任何问题，请联系：
 
 - 作者：Wing
-- 邮箱：wing@example.com
 
 ## 版本历史
 
@@ -142,7 +133,3 @@ pip install GitPython
 ## 许可证
 
 MIT License
-
-## 致谢
-
-感谢OpenClaw团队提供的优秀AI Agent框架，以及GitPython库的开发者们。

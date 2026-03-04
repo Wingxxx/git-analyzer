@@ -1,24 +1,20 @@
 {
-  "name": "openclaw-git-analyzer",
+  "name": "git-analyzer",
   "version": "1.0.0",
-  "description": "Git repository analysis tool for OpenClaw",
+  "description": "Git repository analysis tool for Trae IDE and other AI development environments",
   "main": "git-analyzer-skill/main.py",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "openclaw",
     "git",
     "analyzer",
-    "contribution"
+    "contribution",
+    "trae"
   ],
   "author": "Wing",
   "license": "MIT",
   "dependencies": {
     "GitPython": "^3.1.0"
-  },
-  "openclaw": {
-    "type": "skill",
-    "path": "git-analyzer-skill"
   }
 }

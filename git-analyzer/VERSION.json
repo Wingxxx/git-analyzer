@@ -1,0 +1,78 @@
+{
+  "name": "git-analyzer",
+  "version": "1.0.0",
+  "build_time": "2026-03-10T09:40:08.445801",
+  "author": "WING",
+  "files": [
+    {
+      "path": "INSTALL.md",
+      "hash": "7e55264364bdee1805e23c446037a127edcf0ff055fba608ad026b7d6f7b3f0b",
+      "size": 1402
+    },
+    {
+      "path": "SKILL.md",
+      "hash": "12fc0e508d7c71d07714c1211c67364c4c50ed91aeb00d327011bd79f438ce3a",
+      "size": 9368
+    },
+    {
+      "path": "VERSION.json",
+      "hash": "612af20305ddd7970a4eacb636bfd5235774abd77b313b6b28add153d3b8a8cb",
+      "size": 2439
+    },
+    {
+      "path": "references\\contribution_analysis.md",
+      "hash": "621f7cc8007972890b0bf10047120690595fd55a25335d5b6de97e7659aa6b99",
+      "size": 13102
+    },
+    {
+      "path": "references\\quality_evaluation.md",
+      "hash": "d2a6bbfc1d8efd15e166065301087ef14cea9535a928e7cc18e8703fb3f12763",
+      "size": 20603
+    },
+    {
+      "path": "references\\report_generation.md",
+      "hash": "6cb7fa648f5a528e53de82bc57b815b4989607b7f5f32e7859d38d929e90f947",
+      "size": 7834
+    },
+    {
+      "path": "references\\repository_management.md",
+      "hash": "fc183cbe2597dd6cc4763ddf86accc85f42230041e55754b664c26352d5a4044",
+      "size": 6900
+    },
+    {
+      "path": "scripts\\code_quality_evaluator.py",
+      "hash": "e0dbeb602292f66d0dec70ddc86c9b0d1900eac4981214349dfd35159413cd97",
+      "size": 58654
+    },
+    {
+      "path": "scripts\\exceptions.py",
+      "hash": "59548345d3befbf628605a19112a91d84b35414249f3e273fdb716957f5bc803",
+      "size": 10289
+    },
+    {
+      "path": "scripts\\git_analyzer.py",
+      "hash": "f5e262901be4dc22b2978b3ee7dee34e7e4ef58a772944a4263917323e04894e",
+      "size": 79449
+    },
+    {
+      "path": "scripts\\performance_optimizer.py",
+      "hash": "75ec98dafbf099997f2b8bf2f8f4e9b6663f0d68ed095c9be6d3624524b6d8e0",
+      "size": 39555
+    },
+    {
+      "path": "scripts\\quality_report_generator.py",
+      "hash": "4224196e27d484718c51b52750f43136bab72303317edca3e41ac50042a2739f",
+      "size": 49463
+    },
+    {
+      "path": "scripts\\quality_report_template.md",
+      "hash": "831ea3b766ab840b91de1c67f7512a86b6b716e164618ae8a79bffa177ad7212",
+      "size": 9768
+    },
+    {
+      "path": "scripts\\validators.py",
+      "hash": "758afdb50f1cfc4566c9ab97266307a68811779a8a743f7bff4479ac74a003d9",
+      "size": 18449
+    }
+  ]
+}

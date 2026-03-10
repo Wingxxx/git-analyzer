@@ -1,0 +1,93 @@
+{
+  "skill_name": "git-analyzer",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "检查当前目录是不是Git仓库",
+      "expected_output": "检测当前工作目录是否为Git仓库，返回明确的检测结果",
+      "files": [],
+      "assertions": [
+        {
+          "name": "检测仓库状态",
+          "description": "应该执行status命令检测仓库状态",
+          "type": "output_contains",
+          "expected": "是 Git仓库"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "分析这个仓库2024年以来的贡献度",
+      "expected_output": "分析2024年1月1日以来的贡献度，显示贡献度排名表格",
+      "files": [],
+      "assertions": [
+        {
+          "name": "执行贡献度分析",
+          "description": "应该执行analyze命令并指定--since参数",
+          "type": "output_contains",
+          "expected": "贡献度分析结果"
+        },
+        {
+          "name": "包含时间参数",
+          "description": "应该使用2024-01-01作为开始时间",
+          "type": "output_contains",
+          "expected": "2024-01-01"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "生成一个团队贡献分析报告",
+      "expected_output": "生成Markdown格式的分析报告，包含贡献度排名和团队整体分析",
+      "files": [],
+      "assertions": [
+        {
+          "name": "生成报告文件",
+          "description": "应该生成.md格式的报告文件",
+          "type": "file_created",
+          "expected": ".md"
+        },
+        {
+          "name": "报告包含贡献度排名",
+          "description": "报告应该包含贡献度排名章节",
+          "type": "output_contains",
+          "expected": "贡献度排名"
+        },
+        {
+          "name": "报告包含团队分析",
+          "description": "报告应该包含团队整体分析章节",
+          "type": "output_contains",
+          "expected": "团队整体分析"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "列出所有分支",
+      "expected_output": "列出仓库的所有本地分支",
+      "files": [],
+      "assertions": [
+        {
+          "name": "列出分支",
+          "description": "应该执行branches命令列出分支",
+          "type": "output_contains",
+          "expected": "分支列表"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "查看最近的提交记录",
+      "expected_output": "显示最近的提交记录列表",
+      "files": [],
+      "assertions": [
+        {
+          "name": "显示提交记录",
+          "description": "应该执行commits命令显示提交记录",
+          "type": "output_contains",
+          "expected": "提交记录"
+        }
+      ]
+    }
+  ]
+}

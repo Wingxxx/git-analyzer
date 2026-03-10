@@ -1,0 +1,33 @@
+{
+  "name": "git-analyzer",
+  "version": "1.0.0",
+  "description": "Git仓库分析工具技能包",
+  "author": "WING",
+  "source_dir": "git-analyzer-skill",
+  "output_dir": "git-analyzer",
+  "include": {
+    "root": [
+      "SKILL.md"
+    ],
+    "scripts": [
+      "*.py",
+      "quality_report_template.md"
+    ],
+    "references": [
+      "*.md"
+    ]
+  },
+  "exclude": [
+    "tests/",
+    "evals/",
+    "*.pyc",
+    "__pycache__/",
+    ".pytest_cache/",
+    "htmlcov/",
+    ".coverage",
+    "*.egg-info/"
+  ],
+  "preserve_output": [
+    "INSTALL.md"
+  ]
+}
